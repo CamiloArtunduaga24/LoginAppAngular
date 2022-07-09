@@ -15,17 +15,10 @@ export class LoginComponent implements OnInit {
 
   loginPage: UsuarioModel;
 
-  recordarme = false;
-
   constructor( private readonly auth:AuthService,
                private readonly router:Router ) { }
 
   ngOnInit() {
-
-    if( localStorage.getItem('email') ) {
-      this.loginPage.email = localStorage.getItem('email');
-      this.recordarme = true;
-    }
 
     this.loginPage = new UsuarioModel();
     
@@ -47,9 +40,6 @@ export class LoginComponent implements OnInit {
       console.log(res);
       swal.close();
 
-      if( this.recordarme ) {
-        localStorage.setItem('email', this.loginPage.email);
-      }
 
       this.router.navigateByUrl('/home');
       
